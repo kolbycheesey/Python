@@ -142,6 +142,7 @@ class Window(QMainWindow):
         # setting this widget as central widget of the main window
         self.setCentralWidget(widget)
         self.imv = imv
+        print(self.imv.imageItem)
         #self.img = img
         
         #imv.roi.clicked.connect(self.function)
@@ -149,7 +150,10 @@ class Window(QMainWindow):
         
     def function(self):
         #self.imv.roi.getArrayRegion()
-        image = self.imv.getProcessedImage()
+        
+        self.imv.imageItem.clear()
+        
+        """image = self.imv.getProcessedImage()
         if image.ndim == 2:
             axes = (0, 1)
         elif image.ndim == 3:
@@ -157,9 +161,11 @@ class Window(QMainWindow):
         else:
             return
         
-        data, coords = self.imv.roi.getArrayRegion(image.view(np.ndarray), self.imv.imageItem, axes, returnMappedCoords=True)
-        print(f"data: {data}")
-        print(f"coords: {coords}")
+        data, coords = self.imv.roi.getArrayRegion(image.view(np.ndarray), self.imv.imageItem, axes, returnMappedCoords=True)      #-> imageItem must be part of the same scene as the overall roi
+        #data, coords = self.imv.roi.getArrayRegion(image.view(np.ndarray), pg.ImageItem(), axes, returnMappedCoords=True)
+        print(self.imv.imageItem)
+        #print(f"data: {data}")
+        #print(f"coords: {coords}")"""
  
  
          

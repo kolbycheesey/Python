@@ -8,6 +8,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt6 import QtCore, QtGui
+from PyQt6.QtGui import *
+from PyQt6.QtCore import *
 from pyqtgraph.widgets.GraphicsView import GraphicsView
 from pyqtgraph.widgets.GradientWidget import GradientWidget
 from pyqtgraph.widgets.PlotWidget import PlotWidget
