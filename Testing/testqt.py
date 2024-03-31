@@ -66,6 +66,7 @@ class Window(QMainWindow):
         
         #https://stackoverflow.com/questions/75689465/pyqtgraph-get-spotitem-objects-within-roi-selection
         #https://pyqtgraph.readthedocs.io/en/latest/_modules/pyqtgraph/graphicsItems/ROI.html#RectROI   -> Look at shape and QPainterPath
+        #https://stackoverflow.com/questions/76574722/pytest-qt-to-test-menu-functionality
         
 if __name__ == '__main__':
 
