@@ -44,7 +44,6 @@ class MainWindow(QtWidgets.QMainWindow):
         toolbar = CustomToolbar(self,sc)
         layout.addWidget(toolbar)
         layout.addWidget(sc)
-
         # Create a placeholder widget to hold our toolbar and canvas.
         widget = QtWidgets.QWidget()
         widget.setLayout(layout)
