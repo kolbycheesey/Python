@@ -2,6 +2,8 @@ from collections import OrderedDict
 import time
 
 import zmq
+import ntplib
+c = ntplib.NTPClient()
 
 HEARTBEAT_LIVENESS = 3     # 3..5 is reasonable
 HEARTBEAT_INTERVAL = 1.0   # Seconds
@@ -57,6 +59,9 @@ workers = WorkerQueue()
 
 heartbeat_at = time.time() + HEARTBEAT_INTERVAL
 
+startSync = c.request('pool.ntp.org').tx_time * 1000000000      # This sets the ntptime to be in nanoseconds to match time.time_ns()
+startTime = time.time_ns()
+
 while True:
     if len(workers.queue) > 0:
         poller = poll_both
@@ -71,7 +76,13 @@ while True:
         if not frames:
             break
         
-        print(f"server recieved frames: {frames} at time: {time.time_ns()}")
+        # currTime = c.request('pool.ntb.org')
+        #Original
+        # print(f"server recieved frames: {frames} at time: {time.time_ns()}")
+        #Attempt 1
+        # print(f"server recieved frames: {frames} at time: {(time.time_ns() - startTime) + startSync: 20.0f}")
+        #Attempt 2
+        print(f"server recieved frames: {frames} at time: {c.request('pool.ntp.org').tx_time}")
         address = frames[0]
         workers.ready(Worker(address))
         if frames[1] == b"stop":
