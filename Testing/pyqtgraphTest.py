@@ -1,7 +1,7 @@
-from random import randint
 
 import pyqtgraph as pg
 from PyQt6 import QtCore, QtWidgets
+import secrets
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -20,7 +20,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.plot_graph.showGrid(x=True, y=True)
         self.plot_graph.setYRange(20, 40)
         self.time = list(range(10))
-        self.temperature = [randint(20, 40) for _ in range(10)]
+        self.temperature = [secrets.SystemRandom().randint(20, 40) for _ in range(10)]
         # Get a line reference
         self.line = self.plot_graph.plot(
             self.time,
@@ -45,7 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         print(f"temp 1: {self.temperature}")
         self.temperature = self.temperature[1:]
         print(f"temp 1: {self.temperature}")
-        self.temperature.append(randint(20, 40))
+        self.temperature.append(secrets.SystemRandom().randint(20, 40))
         self.line.setData(self.time, self.temperature)
 
 app = QtWidgets.QApplication([])
