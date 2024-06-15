@@ -9,6 +9,8 @@ import glob
 import os
 import sys
 import subprocess as sp
+from security import safe_command
+
 python = sys.executable
 try:
     import pox
@@ -25,7 +27,7 @@ if __name__ == '__main__':
 
     failed = 0
     for test in tests:
-        p = sp.Popen([python, test], shell=shell).wait()
+        p = safe_command.run(sp.Popen, [python, test], shell=shell).wait()
         if p:
             print('F', end='', flush=True)
             failed = 1
