@@ -9,9 +9,9 @@
 import os
 import sys
 import string
-import random
 
 import dill
+import secrets
 
 
 dill.settings['recurse'] = True
@@ -26,7 +26,7 @@ dne_error = FileNotFoundError("[Errno 2] No such file or directory: '%s'" % fnam
 def write_randomness(number=200):
     f = open(fname, "w")
     for i in range(number):
-        f.write(random.choice(rand_chars))
+        f.write(secrets.choice(rand_chars))
     f.close()
     f = open(fname, "r")
     contents = f.read()
