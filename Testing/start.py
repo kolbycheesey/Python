@@ -1,6 +1,6 @@
 #Mad libs help
 
-import random
+import secrets
 
 listvar = ["number","noun","adj"]
 print(listvar)
@@ -10,7 +10,7 @@ print(listvar)
 #for i in range(20):
     #x = random.randrange(1,4,1)
     #print(x)
-x = random.randrange(1,4,1)
+x = secrets.SystemRandom().randrange(1,4,1)
 print(x)
 
 if x == 1:
@@ -20,7 +20,7 @@ elif x == 2:
 else:
     print("No print this")
 
-word = random.choice(['needed_input0', 'need_input1', 'needed_input2'])
+word = secrets.choice(['needed_input0', 'need_input1', 'needed_input2'])
 print(word)
 
 #for i in range(20):
