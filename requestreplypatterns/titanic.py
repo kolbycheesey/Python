@@ -19,6 +19,7 @@ from mdwrkapi import MajorDomoWorker
 from mdcliapi import MajorDomoClient
 
 from zhelpers import zpipe
+import fickling
 
 TITANIC_DIR = ".titanic"
 
@@ -82,7 +83,7 @@ def titanic_reply ():
         rep_filename = reply_filename(suuid)
         if os.path.exists(rep_filename):
             with open(rep_filename, 'rb') as f:
-                reply = pickle.load(f)
+                reply = fickling.load(f)
             reply = [b"200"] + reply
         else:
             if os.path.exists(req_filename):
@@ -125,7 +126,7 @@ def service_success(client, suuid):
         return True
 
     with open(filename, 'rb') as f:
-        request = pickle.load(f)
+        request = fickling.load(f)
     service = request.pop(0)
     # Use MMI protocol to check if service is available
     mmi_request = [service]
