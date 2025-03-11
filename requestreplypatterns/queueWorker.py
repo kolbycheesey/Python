@@ -1,6 +1,6 @@
-from random import randint
 import time
 import zmq
+import secrets
 
 HEARTBEAT_LIVENESS = 3
 HEARTBEAT_INTERVAL = 1
@@ -15,7 +15,7 @@ def worker_socket(context, poller):
     """Helper function that returns a new configured socket
        connected to the Paranoid Pirate queue"""
     worker = context.socket(zmq.DEALER) # DEALER
-    identity = b"%04X-%04X" % (randint(0, 0x10000), randint(0, 0x10000))
+    identity = b"%04X-%04X" % (secrets.SystemRandom().randint(0, 0x10000), secrets.SystemRandom().randint(0, 0x10000))
     worker.setsockopt(zmq.IDENTITY, identity)
     poller.register(worker, zmq.POLLIN)
     worker.connect("tcp://192.168.1.104:5556")
