@@ -77,8 +77,9 @@
 
 
 import sys
-import random
 import matplotlib
+import secrets
+
 matplotlib.use('QtAgg')
 
 from PyQt6 import QtCore, QtWidgets
@@ -113,7 +114,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         n_data = 50
         self.xdata = list(range(n_data))
-        self.ydata = [random.randint(0, 10) for i in range(n_data)]
+        self.ydata = [secrets.SystemRandom().randint(0, 10) for i in range(n_data)]
         self.update_plot()
 
         self.show()
@@ -126,7 +127,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def update_plot(self):
         # Drop off the first y element, append a new one.
-        self.ydata = self.ydata[1:] + [random.randint(0, 10)]
+        self.ydata = self.ydata[1:] + [secrets.SystemRandom().randint(0, 10)]
         self.canvas.axes.cla()  # Clear the canvas.
         self.canvas.axes.plot(self.xdata, self.ydata, 'r')
         # Trigger the canvas to update and redraw.
